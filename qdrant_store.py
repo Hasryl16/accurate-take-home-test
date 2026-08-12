@@ -1,4 +1,8 @@
 import os
+from qdrant_socket_patch import apply as _apply_socket_patch
+
+_apply_socket_patch()  # Bypass Cloudflare WAF; force IPv4 via QDRANT_DIRECT_IP
+
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
     Distance,
