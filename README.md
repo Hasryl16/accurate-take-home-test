@@ -1,7 +1,5 @@
 # Accenture Take-Home Test — RAG Chatbot (Accurate Online)
 
-Prototipe chatbot RAG dengan memori percakapan untuk modul pembelajaran Accurate Online Accounting Software.
-
 **Stack:** Python (ingestion) + n8n (chatbot workflow)  
 **Deadline:** 17 Agustus 2026
 
@@ -77,7 +75,6 @@ cp .env.example .env
 | `COHERE_API_KEY` | API key dari dashboard.cohere.com |
 | `QDRANT_URL` | URL Qdrant instance (HTTP) |
 | `QDRANT_API_KEY` | API key Qdrant |
-| `QDRANT_DIRECT_IP` | IP langsung Qdrant (bypass Cloudflare WAF) |
 | `QDRANT_COLLECTION` | Nama collection, default: `accenture` |
 
 ### 4. Letakkan PDF
@@ -159,31 +156,6 @@ Instance Qdrant sudah tersedia (self-hosted). Collection `accenture` menggunakan
 | Window memory sederhana | Percakapan sangat panjang (>10 giliran) kehilangan konteks awal | Summarization memory untuk sesi panjang |
 | Satu PDF saja | Tidak ada mekanisme update dokumen parsial | Versioning per dokumen dengan `doc_id` metadata |
 
----
-
-## Sistem Prompt
-
-```
-Kamu adalah asisten customer support untuk Accurate Online Accounting Software.
-Tugasmu adalah menjawab pertanyaan pengguna HANYA berdasarkan dokumen modul 
-pembelajaran yang tersedia sebagai konteks.
-
-Aturan yang WAJIB dipatuhi:
-1. Jawab selalu dalam Bahasa Indonesia yang jelas dan mudah dipahami staf non-teknis.
-2. Setiap jawaban HARUS menyertakan nomor halaman sumber, contoh: "(Halaman 12)".
-3. Jika informasi tidak ada di dokumen, nyatakan dengan jelas:
-   "Informasi ini tidak tersedia dalam modul yang saya miliki."
-4. Jika pertanyaan di luar topik modul Accurate Online, tolak dengan sopan:
-   "Pertanyaan ini di luar cakupan modul yang saya gunakan sebagai referensi."
-5. Jangan mengarang atau menggunakan pengetahuan umum — hanya gunakan konteks 
-   dokumen yang diberikan.
-6. Jika pengguna meminta gaya bahasa tertentu di awal percakapan (misal: 
-   "jawab singkat dan sederhana"), pertahankan gaya itu sepanjang sesi.
-7. Jika potongan dokumen yang ditemukan tidak cukup untuk menjawab dengan yakin,
-   akui ketidakpastian daripada mengarang jawaban.
-```
-
----
 
 ## Struktur File
 
