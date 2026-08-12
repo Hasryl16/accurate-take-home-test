@@ -120,13 +120,13 @@ pytest tests/ -v
 
 ### Model Embedding: Cohere embed-multilingual-v3.0
 
-Dokumen berbahasa Indonesia. Model `embed-english-v3.0` dioptimalkan untuk Bahasa Inggris — akurasinya menurun untuk teks Indonesia. `embed-multilingual-v3.0` dilatih untuk 100+ bahasa termasuk Indonesia, memberikan retrieval yang lebih relevan untuk konten akuntansi berbahasa Indonesia.
+`embed-multilingual-v3.0` dilatih untuk 100+ bahasa termasuk Indonesia, memberikan retrieval yang lebih relevan untuk konten akuntansi berbahasa Indonesia.
 
 ### Strategi Chunking: Page-aware + RecursiveCharacterTextSplitter
 
 **Chunk size 800 karakter, overlap 100:** Setiap chunk rata-rata 1–2 paragraf — cukup konteks untuk retrieval tanpa mendekati batas token embedding. Overlap 100 karakter (~1 kalimat) mencegah informasi penting terpotong di perbatasan chunk.
 
-**Per halaman (bukan flat):** Dengan memproses setiap halaman secara independen, metadata `page_number` tersimpan akurat di setiap chunk. Chatbot bisa menyebut "Halaman 12" sebagai sumber jawaban, memenuhi persyaratan W2.
+**Per halaman (bukan flat):** Dengan memproses setiap halaman secara independen, metadata `page_number` tersimpan akurat di setiap chunk. Chatbot bisa menyebut "Halaman 12" sebagai sumber jawaban
 
 **RecursiveCharacterTextSplitter:** Urutan separator `["\n\n", "\n", ".", " ", ""]` memastikan pemotongan terjadi di batas paragraf/kalimat terlebih dahulu, bukan di tengah kata.
 

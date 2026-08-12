@@ -10,18 +10,7 @@ def chunk_pages(
     chunk_size: int = CHUNK_SIZE,
     chunk_overlap: int = CHUNK_OVERLAP,
 ) -> list[dict]:
-    """
-    Chunk setiap halaman secara terpisah, mempertahankan page_number di metadata.
 
-    Args:
-        pages: output dari extract.extract_pages() —
-               list of {page_number, text, source_file}
-        chunk_size: maksimum karakter per chunk (default 800)
-        chunk_overlap: jumlah karakter overlap antar chunk (default 100)
-
-    Returns:
-        list of {id, page_number, chunk_index, source_file, text}
-    """
     splitter = RecursiveCharacterTextSplitter(
         separators=["\n\n", "\n", ".", " ", ""],
         chunk_size=chunk_size,

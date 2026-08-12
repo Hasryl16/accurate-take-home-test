@@ -1,7 +1,7 @@
 import os
 from qdrant_socket_patch import apply as _apply_socket_patch
 
-_apply_socket_patch()  # Bypass Cloudflare WAF; force IPv4 via QDRANT_DIRECT_IP
+_apply_socket_patch()  
 
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
@@ -13,11 +13,10 @@ from qdrant_client.models import (
     VectorParams,
 )
 
-VECTOR_SIZE = 1024  # dimensi Cohere embed-multilingual-v3.0
+VECTOR_SIZE = 1024  
 
 
 def get_client() -> QdrantClient:
-    """Buat Qdrant client dari environment variables."""
     return QdrantClient(
         url=os.getenv("QDRANT_URL"),
         api_key=os.getenv("QDRANT_API_KEY") or None,
@@ -25,7 +24,6 @@ def get_client() -> QdrantClient:
 
 
 def ensure_collection(client: QdrantClient, collection: str) -> None:
-    """Buat collection jika belum ada. Skip jika sudah ada."""
     existing_names = [c.name for c in client.get_collections().collections]
     if collection not in existing_names:
         client.create_collection(
@@ -38,7 +36,6 @@ def ensure_collection(client: QdrantClient, collection: str) -> None:
 
 
 def delete_by_source(client: QdrantClient, collection: str, source_file: str) -> None:
-    """Hapus semua points dengan source_file tertentu (untuk idempotency)."""
     client.delete(
         collection_name=collection,
         points_selector=Filter(
@@ -54,7 +51,6 @@ def upsert_chunks(
     chunks: list[dict],
     embeddings: list[list[float]],
 ) -> None:
-    """Upsert chunks beserta embedding-nya ke Qdrant."""
     points = [
         PointStruct(
             id=chunks[i]["id"],
