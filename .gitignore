@@ -1,0 +1,17 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+
+# Pytest
+.pytest_cache/
+
+# Docs (PDF terlalu besar untuk di-commit)
+docs/*.pdf
