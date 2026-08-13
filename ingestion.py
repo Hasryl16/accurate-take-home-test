@@ -9,16 +9,14 @@ from qdrant_store import get_client, ensure_collection, delete_by_source, upsert
 load_dotenv()
 
 PDF_PATH = "docs/MODUL PEMBELAJARAN.pdf"
-BATCH_SIZE = 90  # Cohere API limit: 96 per request, use 90 to be safe
-
+BATCH_SIZE = 90  
 
 def embed_chunks(chunks: list[dict]) -> list[list[float]]:
-    """Generate embeddings untuk semua chunks via Cohere, dalam batch."""
     co = cohere.ClientV2(os.getenv("COHERE_API_KEY"))
     texts = [c["text"] for c in chunks]
     embeddings = []
 
-    total_batches = (len(texts) + BATCH_SIZE - 1) // BATCH_SIZE
+    total_batches = (len(texts) + BATCH_SIZE - 1) 
     for batch_num, i in enumerate(range(0, len(texts), BATCH_SIZE), start=1):
         batch = texts[i : i + BATCH_SIZE]
         resp = co.embed(
