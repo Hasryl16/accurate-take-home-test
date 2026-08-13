@@ -35,7 +35,7 @@ def embed_chunks(chunks: list[dict]) -> list[list[float]]:
 
 def main() -> None:
     print("=" * 40)
-    print("  Accenture RAG — Ingestion Pipeline")
+    print("  Accurate RAG — Ingestion Pipeline")
     print("=" * 40)
 
     # 1. Ekstrak teks per halaman

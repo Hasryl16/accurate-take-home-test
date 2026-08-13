@@ -1,4 +1,4 @@
-# Accenture Take-Home Test — RAG Chatbot (Accurate Online)
+# Accurate Take-Home Test — RAG Chatbot (Accurate Online)
 
 **Stack:** Python (ingestion) + n8n (chatbot workflow)  
 **Deadline:** 17 Agustus 2026
@@ -26,7 +26,7 @@ MODUL PEMBELAJARAN.pdf (64 halaman, 34MB)
             │
             ▼
   Qdrant Vector Store
-  (collection: accenture · 170 points · cosine similarity)
+  (collection: Accurate · 170 points · cosine similarity)
             │
             ▼
   [n8n Chatbot Workflow]
@@ -56,7 +56,7 @@ tesseract --version
 ### 2. Python Environment
 
 ```bash
-cd accenture/
+cd Accurate/
 python -m venv .venv
 source .venv/bin/activate    # Linux/Mac
 # .venv\Scripts\activate     # Windows
@@ -75,7 +75,7 @@ cp .env.example .env
 | `COHERE_API_KEY` | API key dari dashboard.cohere.com |
 | `QDRANT_URL` | URL Qdrant instance (HTTP) |
 | `QDRANT_API_KEY` | API key Qdrant |
-| `QDRANT_COLLECTION` | Nama collection, default: `accenture` |
+| `QDRANT_COLLECTION` | Nama collection, default: `Accurate` |
 
 ### 4. Letakkan PDF
 
@@ -93,7 +93,7 @@ python ingestion.py
 Output yang diharapkan:
 ```
 ========================================
-  Accenture RAG — Ingestion Pipeline
+  Accurate RAG — Ingestion Pipeline
 ========================================
 [1/4] Extracting pages ... → 64 halaman
 [2/4] Chunking ...         → 170 chunks
@@ -142,7 +142,7 @@ Riwayat yang memanjang: saat melebihi 10 giliran, giliran paling lama dihapus (s
 
 ### Vector Store: Qdrant
 
-Instance Qdrant sudah tersedia (self-hosted). Collection `accenture` menggunakan cosine similarity — metrik standar untuk semantic search dengan normalized embeddings. Setiap point menyimpan payload `{page_number, chunk_index, source_file, text}` untuk retrieval dan sitasi.
+Instance Qdrant sudah tersedia (self-hosted). Collection `Accurate` menggunakan cosine similarity — metrik standar untuk semantic search dengan normalized embeddings. Setiap point menyimpan payload `{page_number, chunk_index, source_file, text}` untuk retrieval dan sitasi.
 
 ---
 
@@ -160,7 +160,7 @@ Instance Qdrant sudah tersedia (self-hosted). Collection `accenture` menggunakan
 ## Struktur File
 
 ```
-accenture/
+Accurate/
 ├── ingestion.py            — orchestrator pipeline utama
 ├── extract.py              — PDF text extraction + OCR
 ├── chunker.py              — page-aware chunking
